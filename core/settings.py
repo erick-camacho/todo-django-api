@@ -19,7 +19,7 @@ SECRET_KEY = 'l)cm-ln+f&t7s+oo4+qg=$a4(d19vhr5aw9&$z(#at0biovqlq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['todo-api-erick.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['protected-coast-71170.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
