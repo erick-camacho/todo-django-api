@@ -1,4 +1,5 @@
 import os
+import django_heroku
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -13,6 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY")
+# SECRET_KEY = 'l)cm-ln+f&t7s+oo4+qg=$a4(d19vhr5aw9&$z(#at0biovqlq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -35,6 +37,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -117,8 +120,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_TMP = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+os.makedirs(STATIC_TMP, exist_ok=True)
+os.makedirs(STATIC_ROOT, exist_ok=True)
+
+STATICFILES_DIRS = (
+os.path.join(BASE_DIR, 'static'),
+)
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
+
+django_heroku.settings(locals())
