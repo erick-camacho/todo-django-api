@@ -135,6 +135,7 @@ os.path.join(BASE_DIR, 'static'),
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "https://todo-app-erick-camacho.netlify.app"
 ]
 
 django_heroku.settings(locals())
